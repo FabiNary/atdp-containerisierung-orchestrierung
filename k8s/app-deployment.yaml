@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-docker-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-docker-service
+  template:
+    metadata:
+      labels:
+        app: example-docker-service
+    spec:
+      containers:
+        - name: example-docker-service
+          image: example-docker-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-mysql
+spec:
+  selector:
+    matchLabels:
+      app: example-mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: example-mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: mysql-pw
+            - name: MYSQL_DATABASE
+              value: node_example
+          ports:
+            - containerPort: 3306
